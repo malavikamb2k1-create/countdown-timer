@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Countdown Timer</h2>
+
+    <input type="number" id="seconds" placeholder="Enter seconds">
+    <button onclick="startTimer()">Start</button>
+
+    <h1 id="display">00:00</h1>
+</div>
+
+<script>
+let timer;
+
+function startTimer() {
+    clearInterval(timer);  // reset previous timer
+    let timeLeft = document.getElementById("seconds").value;
+
+    timer = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            document.getElementById("display").innerText = "TIME UP!";
+        } else {
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+
+            document.getElementById("display").innerText =
+                String(mins).padStart(2, '0') + ":" + String(secs).padStart(2, '0');
+
+            timeLeft--;
+        }
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
